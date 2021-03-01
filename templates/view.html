@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>作れた！-検索結果-</title>
+{% endblock title %}
+
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'view.css' %}">
+{% endblock customcss %}
+
+{% block content %}
+
+<div class="all">
+    <h3>検索結果</h3>
+    {% for query in data_list %}
+    <label>
+        <a href="{% url 'detail' query.pk %}">
+            <div class="flex">
+                <div class="left">
+                    <p class="img"><img src="{{ query.snsimage.url }}"></p>
+                    <p class="title" style="white-space:pre-wrap;">{{ query.title }}</p>
+                </div>
+                <div class="right">
+                    <p class="content" style="white-space:pre-wrap;">材料：</p>
+                    <p class="material" style="white-space:pre-wrap;">{{ query.material }}</p>   
+                    <p class="author" style="white-space:pre-wrap;">投稿者：{{ query.author }}</p>
+                </div>
+            </div>
+                
+        </a>
+    </label>
+    
+    {% endfor %}
+</div>
+{% endblock content %}

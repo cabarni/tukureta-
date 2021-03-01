@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>作れた！-レシピ-</title>
+{% endblock title %}
+
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'detail.css' %}">
+{% endblock customcss %}
+
+
+
+
+{% block content %}
+<p class="title">{{ object.title }}</p>
+<div class="flex">
+    <p class="img"><img src="{{ object.snsimage.url }}"></p>
+    <div class="space">
+        <h3>作り方</h3>
+        <p class="material" style="white-space:pre-wrap;">{{ object.content }}</p>
+    </div>
+</div>
+
+<!--
+    <a href="{% url 'good' object.pk %}" class="btn btn-primary" aria-disabled="true">いいねする</a>
+    <a href="{% url 'read' object.pk %}" class="btn btn-secondary" role="button" aria-disabled="true">既読にする</a>
+-->
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'create.css' %}">
+{% endblock customcss %}
+
+{% block content %}
+{% if user.is_authenticated %}<!--loginされてるとき-->
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+<p>タイトル：<input type="text" name="title" maxlength="20"></p>
+<textarea name="content" id="margin" cols="26" rows="10">
+</textarea>
+<p>サムネイル：<input type="file" name="snsimage"></p>
+<p>考案者：<input type="text" name="author" maxlength="8"></p>
+<p>材料：<input type="text" name="material"></p>
+<p>検索に引っかかるように：<input type="text" name="readtext" placeholder="食材 個数 (半角)"　></p>
+<input type="submit" value="create">
+</form>
+{% else %}<!--loginされてなくてこのページにいる-->
+<a href="/login">login</a>
+
+{% endif %}
+
+{% endblock content %}
+
+
